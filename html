@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MITHU TRENDS</title>
+
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial;background:#fdecef}
+
+/* HEADER */
+.header{text-align:center;padding:22px}
+.brand{font-size:36px;font-weight:bold;color:#d6336c}
+.owner-line{font-size:14px;color:#777;font-style:italic}
+.tagline{color:#555}
+.quote{font-style:italic;margin-top:6px}
+
+/* COMBO */
+.combo{
+  background:linear-gradient(135deg,#ff4d6d,#ff8fab);
+  color:#fff;
+  margin:12px;
+  padding:18px;
+  border-radius:14px;
+  text-align:center;
+  font-weight:bold;
+  font-size:16px;
+}
+.combo span{
+  background:#fff;
+  color:#ff4d6d;
+  padding:6px 14px;
+  border-radius:8px;
+  margin-left:8px;
+  font-size:20px;
+}
+
+/* SIZE */
+.size-btn{
+  padding:12px 18px;
+  margin:6px;
+  border:2px solid #000;
+  background:#fff;
+  font-size:16px;
+  border-radius:6px;
+}
+.size-btn.active{background:#000;color:#fff}
+
+/* GRID */
+#photos{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+  padding:14px
+}
+
+/* CARD */
+.card{
+  background:#fff;
+  padding:10px;
+  border-radius:14px;
+  position:relative
+}
+.card img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  border-radius:12px
+}
+
+/* BADGES */
+.badge{
+  position:absolute;
+  top:10px;
+  left:10px;
+  background:#ff4d6d;
+  color:#fff;
+  font-size:12px;
+  padding:6px 8px;
+  border-radius:6px;
+  font-weight:bold
+}
+.badge.secondary{top:36px;background:#555}
+
+/* PRICE */
+.price{margin-top:8px;font-size:16px}
+.price b{font-size:18px}
+.price del{color:#888;font-size:14px;margin-left:8px}
+.price span{color:#ff4d6d;font-size:14px;margin-left:8px}
+
+/* CART COUNT */
+#cartCount{
+  color:green;
+  font-weight:bold;
+  font-size:18px;
+  margin-left:14px
+}
+
+/* MODALS */
+.modal{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:none;
+  z-index:9999
+}
+.modal img{
+  width:100%;
+  height:100%;
+  object-fit:contain
+}
+
+/* BACK HEADER */
+.modal-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:20px;
+  font-weight:bold;
+  padding:18px;
+  cursor:pointer;
+  color:#fff;
+}
+.modal-header span{font-size:30px}
+
+/* ACTIONS */
+.modal-actions{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  display:flex;
+  padding:16px;
+  background:#fff
+}
+
+/* BIG ADD TO CART */
+.cart-btn{
+  flex:1;
+  background:#000;
+  color:#fff;
+  padding:18px;
+  border:none;
+  border-radius:10px;
+  font-size:20px;
+  font-weight:bold;
+}
+
+/* CART PAGE */
+#cartModal{background:#fff}
+#cartModal .box{
+  height:100%;
+  padding:18px;
+}
+
+/* SWIPE CART */
+.cart-swipe{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+}
+.cart-swipe::-webkit-scrollbar{display:none}
+
+.cart-item{
+  flex:0 0 100%;
+  scroll-snap-align:center;
+}
+.cart-item img{
+  width:100%;
+  border-radius:14px;
+}
+
+/* BIG REMOVE */
+.remove-btn{
+  margin-top:14px;
+  width:100%;
+  background:#ff3b3b;
+  color:#fff;
+  border:none;
+  padding:18px 0;
+  font-size:18px;
+  font-weight:bold;
+  border-radius:12px;
+}
+
+/* TOTAL */
+.total-box{
+  margin:18px 0;
+  padding:16px;
+  background:#f7f7f7;
+  border-radius:12px;
+  font-weight:bold;
+  font-size:18px;
+}
+
+/* BIG WHATSAPP */
+.whatsapp-btn{
+  width:100%;
+  background:#25D366;
+  color:#fff;
+  padding:20px;
+  border:none;
+  border-radius:12px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+/* FLOAT CART */
+#floatCart{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  background:#000;
+  color:#fff;
+  padding:16px 20px;
+  border-radius:34px;
+  font-size:18px;
+  display:none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="brand">MITHU TRENDS</div>
+  <div class="owner-line">Owned by Vlog with Ayraa</div>
+  <div class="tagline">Maternity Wear</div>
+  <div class="quote">Comfort-first maternity wear</div>
+</div>
+
+<div class="combo">
+  🎉 Special Combo Offer for 2026 – 3 Pieces <span>₹1049</span>
+</div>
+
+<h3 style="margin-left:14px">Select Size</h3>
+<button class="size-btn" onclick="loadSize('M',this)">M</button>
+<button class="size-btn" onclick="loadSize('L',this)">L</button>
+<button class="size-btn" onclick="loadSize('XL',this)">XL</button>
+<button class="size-btn" onclick="loadSize('XXL',this)">XXL</button>
+
+<h3 style="margin-left:14px">Photos</h3>
+<div id="cartCount">Selected: 0</div>
+<div id="photos"></div>
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal">
+  <div class="modal-header" onclick="closeProduct()">
+    <span>←</span> Back
+  </div>
+  <img id="modalImg">
+  <div class="modal-actions">
+    <button class="cart-btn" onclick="addToCart()">ADD TO CART</button>
+  </div>
+</div>
+
+<!-- CART MODAL -->
+<div id="cartModal" class="modal">
+  <div class="box">
+    <div class="modal-header" style="color:#000" onclick="closeCart()">
+      <span>←</span> Your Cart
+    </div>
+
+    <div id="cartItems"></div>
+    <div id="totalPrice" class="total-box"></div>
+
+    <button class="whatsapp-btn" onclick="orderWhatsApp()">
+      💬 ORDER ON WHATSAPP
+    </button>
+  </div>
+</div>
+
+<div id="floatCart" onclick="openCart()">🛒 Cart (<span id="cartNum">0</span>)</div>
+
+<script>
+const CSV_URL="https://docs.google.com/spreadsheets/d/e/2PACX-1vT3Tt8X_vacw9KXXTB0m4Vr8waCil7dZWhjk0H_uMiQ9j9mT9TztsMvPRnh1TUGUImRYpdSKZcVML4B/pub?output=csv";
+const PRICE=349, COMBO=1049, PHONE="916381156917";
+
+let data=[],cart=[],selectedSize="",current=null;
+
+fetch(CSV_URL).then(r=>r.text()).then(t=>{
+ t.split("\n").slice(1).forEach(r=>{
+  let c=r.split(",");
+  if(c[0]&&c[1]) data.push({size:c[0].trim(),id:c[1].trim()});
+ });
+ loadAll();
+});
+
+function updateCart(){
+ cartCount.innerText="Selected: "+cart.length;
+ cartNum.innerText=cart.length;
+ floatCart.style.display=cart.length?"block":"none";
+}
+
+function calculateTotal(){
+ let combos=Math.floor(cart.length/3);
+ let rem=cart.length%3;
+ return combos*COMBO + rem*PRICE;
+}
+
+function loadAll(){
+ selectedSize="";cart=[];updateCart();
+ let shown=new Set();photos.innerHTML="";
+ data.forEach(d=>{if(!shown.has(d.id)){shown.add(d.id);render(d.id)}});
+}
+
+function loadSize(size,btn){
+ selectedSize=size;cart=[];updateCart();
+ document.querySelectorAll(".size-btn").forEach(b=>b.classList.remove("active"));
+ btn.classList.add("active");
+ photos.innerHTML="";
+ data.filter(d=>d.size===size).forEach(d=>render(d.id));
+}
+
+function render(id){
+ photos.innerHTML+=`
+ <div class="card">
+  <span class="badge">SAVE 58%</span>
+  <span class="badge secondary">BEST SELLER</span>
+  <img src="https://lh3.googleusercontent.com/d/${id}" onclick="openProduct('${id}',this.src)">
+  <div class="price"><b>₹349</b><del>₹849</del><span>58% OFF</span></div>
+ </div>`;
+}
+
+function openProduct(id,src){
+ current={id:id,size:selectedSize};
+ modalImg.src=src;
+ productModal.style.display="block";
+}
+function closeProduct(){productModal.style.display="none"}
+
+function addToCart(){
+ if(!current||!current.size){alert("Select size first");return;}
+ cart.push(current);
+ updateCart();
+ closeProduct();
+}
+
+function openCart(){
+ let html=`<div class="cart-swipe">`;
+ cart.forEach((i,idx)=>{
+  html+=`
+   <div class="cart-item">
+    <img src="https://lh3.googleusercontent.com/d/${i.id}">
+    <div><b>Size:</b> ${i.size}</div>
+    <button class="remove-btn" onclick="removeItem(${idx})">❌ Remove Item</button>
+   </div>`;
+ });
+ html+=`</div>`;
+ cartItems.innerHTML=html;
+ totalPrice.innerText="Total Price: ₹"+calculateTotal();
+ cartModal.style.display="block";
+}
+
+function closeCart(){cartModal.style.display="none"}
+
+function removeItem(i){
+ cart.splice(i,1);
+ updateCart();
+ cart.length?openCart():closeCart();
+}
+
+function orderWhatsApp(){
+ let msg="Hello, I want to order from MITHU TRENDS 👗\n\n";
+ cart.forEach((item,index)=>{
+  msg+=(index+1)+". Product Image:\nhttps://lh3.googleusercontent.com/d/"+item.id+"\nSize: "+item.size+"\n\n";
+ });
+ msg+="Total Items: "+cart.length+"\nTotal Price: ₹"+calculateTotal();
+ window.open("https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg));
+}
+</script>
+
+</body>
+</html>
